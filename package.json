@@ -1,0 +1,37 @@
+{
+  "name": "webflight-traffic",
+  "version": "0.0.1",
+  "description": "Plugin for webflight that shows nearby air traffic.",
+  "main": "./index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+  },
+  "bin": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/wiseman/webflight-traffic.git"
+  },
+  "keywords": [
+    "ads-b",
+    "aircraft",
+    "aviation",
+    "avionics",
+    "kinetic avionics",
+    "mode s",
+    "sbs-1",
+    "virtual radar"
+  ],
+  "author": {
+    "name": "John Wiseman",
+    "email": "jjwiseman@gmail/com",
+    "url": "http://lemondronor.com"
+  },
+  "license": "MIT/X11",
+  "engine": {
+    "node": ">=0.4"
+  }
+}
