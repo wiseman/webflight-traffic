@@ -3,7 +3,10 @@ var sbs1 = require('sbs1');
 
 function traffic(name, deps) {
   var traffic = {};
-  var host = deps.config.sbs1_host || 'localhost';
+  var host = 'localhost';
+  if (deps.config && deps.config.traffic) {
+    host = deps.config.traffic.sbs1_host || host;
+  }
   var sbs1Client = sbs1.createClient({host: host});
   var trafficPushPeriod = 1000;  // ms
   var messageTimeout = 120000;  // ms
