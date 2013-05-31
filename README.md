@@ -41,9 +41,9 @@ feed to put the markers.
 We just need to make sure we enable the magnetometer values in the
 drone's navdata telemetry:
 
-```
+```javascript
 function initDrone(client) {
-  // From the SDK.
+  // From the AR.Drone SDK.
   var default_navdata_options = (
     navdata_option_mask(arDroneConstants.options.DEMO) |
     navdata_option_mask(arDroneConstants.options.VISION_DETECT));
