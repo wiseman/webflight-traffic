@@ -4,6 +4,7 @@
   "description": "Plugin for webflight that shows nearby air traffic.",
   "main": "./index.js",
   "dependencies": {
+    "sbs1": "~0.2.0"
   },
   "devDependencies": {
   },
