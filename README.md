@@ -126,7 +126,8 @@ module.exports = config;
 Now you need to start an ADS-B decoder.  For these instructions we'll
 assume you're using [dump1090](https://github.com/antirez/dump1090),
 because it's easier to build than gnuradio and it can run onboard the
-AR.Drone.
+AR.Drone.  You have two options: running dump1090 on your laptop or
+running it on the drone itself.
 
 ### Running dump1090 on your laptop
 
