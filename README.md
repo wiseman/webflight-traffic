@@ -22,7 +22,8 @@ The AR.Drone doesn't come with GPS, so for now I fake it:
 
 ```
 this.dronePosition = {
-  // [Sunset Junction area of Los Angeles](https://www.google.com/maps/preview#!q=34.090303%2C-118.276223&data=!1m4!1m3!1d10526!2d-118.2762253!3d34.0902688!2m1!1e3!4m10!1m9!4m8!1m3!1d676815!2d-118.4117325!3d34.020479!3m2!1i1539!2i1228!4f13.1&fid=7)
+  // Sunset Junction area of Los Angeles.
+  // https://www.google.com/maps/preview#!q=34.090303%2C-118.276223
   lat: 34.090303,
   lon: -118.276223
 };
@@ -94,3 +95,30 @@ Link webflight-traffic into webflight's `plugins` directory:
 ```
 (cd ardrone-webflight/plugins && ln -s ../../webflight-traffic traffic)
 ```
+
+Copy ardrone-webflight's config.js.example:
+```
+(cd ardrone-webflight && cp config.js.example config.js)
+```
+
+And add `"traffic"` to the `plugins` array in `config.js`, so it looks something like this:
+```
+var config = {
+    plugins: [
+      "video-stream"  // Display the video as a native h264 stream decoded in JS 
+      , "hud"         // Display the artificial horizon, altimeter, compass, etc.
+      , "pilot"       // Pilot the drone with the keyboard
+      , "traffic"     // Show ADS-B traffic.
+    ]
+};
+
+module.exports = config;
+```
+
+Now you need to start an ADS-B decoder.
+[dump1090](https://github.com/antirez/dump1090) is easy to use--You
+can either build it on your laptop, and plug your RTL-SDR dongle in
+there, or you can build it for your AR.Drone and run it there, using
+the instructions in my blog post, ["Cheap ADS-B on amateur
+drones"](http://lemondronor.com/blog/indexphp/2013/4/cheap-ads-b-on-amateur-drones).
+
