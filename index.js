@@ -1,7 +1,25 @@
 var sbs1 = require('sbs1');
+var arDroneConstants = require('ar-drone/lib/constants')
 
+
+function navdata_option_mask(c) {
+  return 1 << c;
+}
+
+
+function initDrone(client) {
+  // From the SDK.
+  var default_navdata_options = (
+    navdata_option_mask(arDroneConstants.options.DEMO) |
+      navdata_option_mask(arDroneConstants.options.VISION_DETECT));
+  // Enable the magnetometer data.
+  client.config('general:navdata_options',
+                default_navdata_options |
+                navdata_option_mask(arDroneConstants.options.MAGNETO));
+}
 
 function traffic(name, deps) {
+  initDrone(deps.client);
   var traffic = {};
   var host = 'localhost';
   if (deps.config && deps.config.traffic) {
