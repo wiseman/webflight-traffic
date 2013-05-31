@@ -166,4 +166,12 @@ var config = {
 module.exports = config;
 ```
 
+### Start the server
 
+Now you can start the webflight server:
+
+```
+(cd ardrone-webflight && node app.js)
+```
+
+And point your browser at http://localhost:3000/.
