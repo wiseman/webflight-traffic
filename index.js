@@ -63,6 +63,10 @@ function traffic(name, deps) {
     msg.timestamp = new Date().getTime();
     traffic[id] = mergeMessages(traffic[id] || {}, msg);
   });
+  sbs1Client.on('error', function(err) {
+    console.error('Error communicating with SBS1 server at ' +
+                  host + ': ' + err);
+  });
 
   // Schedule periodic traffic updates.
   var pushTraffic = function() {
