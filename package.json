@@ -5,7 +5,10 @@
   "main": "./index.js",
   "dependencies": {
     "ar-drone": "git+ssh://git@github.com:felixge/node-ar-drone.git#master",
-    "sbs1": "~0.2.1"
+    "geolib": "git://github.com/wiseman/Geolib.git#boundingbox",
+    "planefinder": "~0.0.1",
+    "sbs1": "~0.2.1",
+    "underscore": "~1.4.4"
   },
   "devDependencies": {
   },

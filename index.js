@@ -1,4 +1,7 @@
+var geolib = require('geolib');
+var planefinder = require('planefinder');
 var sbs1 = require('sbs1');
+var _ = require('underscore');
 var arDroneConstants = require('ar-drone/lib/constants')
 
 
@@ -21,52 +24,66 @@ function initDrone(client) {
 function traffic(name, deps) {
   initDrone(deps.client);
   var traffic = {};
-  var host = 'localhost';
-  if (deps.config && deps.config.traffic) {
-    host = deps.config.traffic.sbs1_host || host;
-  }
-  var sbs1Client = sbs1.createClient({host: host});
+  var config = deps.config.traffic || {};
   var trafficPushInterval = 1000;  // ms
   var messageTimeout = 120000;  // ms
 
-  mergeMessages = function(oldMsg, newMsg) {
-    var merged = {};
-    for (var attrname in oldMsg) { merged[attrname] = oldMsg[attrname]; }
-    for (var attrname in newMsg) {
-      if (newMsg[attrname]) {
-        merged[attrname] = newMsg[attrname];
-      }
-    }
-    return merged;
-  }
-
-  garbageCollect = function() {
+  var garbageCollect = function() {
     var nowMillis = new Date().getTime();
-    keys = [];
-    for (var key in traffic) {
-      keys.push(key);
-    }
-    for (var i = 0; i < keys.length; i++) {
-      var key = keys[i];
+    keys = _.keys(traffic);
+    _.each(keys, function(key) {
       var age = nowMillis - traffic[key].timestamp;
       if (age >= messageTimeout) {
         console.log('Expired old traffic ID ' + key);
         delete traffic[key];
       }
-    }
+    });
   };
 
   // Listen to SBS1 messages.
+  var sbs1Host = config.sbs1_host || 'localhost';
+  var sbs1Client = sbs1.createClient({host: sbs1Host});
+
   sbs1Client.on('message', function(msg) {
     var id = msg.hex_ident;
     // Don't assume messages have any kind of timestamps; add our own.
     msg.timestamp = new Date().getTime();
-    traffic[id] = mergeMessages(traffic[id] || {}, msg);
+    traffic[id] = _.defaults(msg, traffic[id] || {});
   });
   sbs1Client.on('error', function(err) {
     console.error('Error communicating with SBS1 server at ' +
-                  host + ': ' + err);
+                  sbs1Host + ': ' + err);
   });
+
+  var handlePlanefinderData = function(planes) {
+    _.each(planes, function(plane) {
+      traffic[plane.hex_ident] = plane;
+    });
+  };
+
+  if (config.planefinder) {
+    console.log('Using planefinder');
+    // Use default config.
+    if (typeof(config.planefinder) !== 'object') {
+      config.planefinder = {};
+    }
+    defaults = {
+      faa: false,
+      maxDistance: 30000
+    };
+    _.defaults(config.planefinder, defaults);
+    // Find bounds.
+    var dronePosition = {
+      latitude: 34.090303,
+      longitude: -118.276223
+    };
+    config.planefinder.bounds = (
+      config.planefinder.bounds ||
+        geolib.getBoundsOfDistance(dronePosition, config.planefinder.maxDistance));
+    var pfClient = planefinder.createClient(config.planefinder);
+    pfClient.on('data', handlePlanefinderData);
+    pfClient.resume();
+  }
 
   // Schedule periodic traffic updates.
   var pushTraffic = function() {
