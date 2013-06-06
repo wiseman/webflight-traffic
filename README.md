@@ -69,6 +69,13 @@ function initDrone(client) {
 
 ### Where the traffic is
 
+This plugin can use two possible sources to get locations of nearby
+aircraft: an ADS-B receiver, or planefinder.net.  The recommended way
+to use the plugin is with an ADS-B receiver.
+
+
+#### ADS-B
+
 Some aircraft (lots in Europe and Australia, some in the U.S.)
 broadcast their GPS coordinates and other info using a scheme called
 [ADS-B](http://en.wikipedia.org/wiki/Automatic_dependent_surveillance-broadcast).
@@ -80,9 +87,27 @@ miles away.
 
 This plugin assumes there is an ADS-B decoder serving [SBS-1
 style](https://github.com/wiseman/node-sbs1#readme) messages at
-`localhost:30003`. The instructions below explain how to run a
+`localhost:30003`. There are instructions below on how to run a
 decoder.
 
+
+#### Planefinder.net
+
+If you don't have an ADS-B receiver and you just want to see what the
+traffic plugin looks like, you can tell it to get data from
+planefinder.net by adding a small section to your config.js:
+
+```javascript
+  traffic: {
+    planefinder: true
+  }
+```
+
+By default the plugin will show only ADS-B traffic from
+planefinder.net (vs. FAA-supplied data that is delayed by 5 minutes),
+and it will update every two minutes--since planefinder doesn't have
+an official API and we don't want to cause undue load on their
+servers.
 
 ## Running the software
 
