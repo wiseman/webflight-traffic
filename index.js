@@ -26,7 +26,7 @@ function traffic(name, deps) {
     host = deps.config.traffic.sbs1_host || host;
   }
   var sbs1Client = sbs1.createClient({host: host});
-  var trafficPushPeriod = 1000;  // ms
+  var trafficPushInterval = 1000;  // ms
   var messageTimeout = 120000;  // ms
 
   mergeMessages = function(oldMsg, newMsg) {
@@ -73,7 +73,7 @@ function traffic(name, deps) {
     garbageCollect();
     deps.io.sockets.emit('traffic', traffic);
   };
-  var trafficTimer = setInterval(pushTraffic, trafficPushPeriod);
+  var trafficTimer = setInterval(pushTraffic, trafficPushInterval);
 };
 
 
