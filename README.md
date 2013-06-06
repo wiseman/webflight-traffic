@@ -32,10 +32,17 @@ this.dronePosition = {
 };
 ```
 
-It should be possible to use a USB GPS, wifi SSID geolocation or some
-other scheme to get the AR.Drone's position.  Other drones, like
-Arducopter/Arduplane may already have GPS.
+There are a few other possible solutions:
 
+1. Wait for Parrot to release the [Flight Recorder/GPS
+module](http://ardrone2.parrot.com/flight-recorder/).
+
+2. Put the AR.Drone's wifi into infrastructure mode, parse the output
+of `iwlist ath0 scan` and pass nearby access point info to the [Google
+geolocation
+API](https://developers.google.com/maps/documentation/business/geolocation/#wifi_access_point_object).
+
+3. Plug your own GPS into the drone's USB port.
 
 ### The drone's attitude
 
