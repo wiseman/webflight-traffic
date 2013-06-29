@@ -74,8 +74,8 @@ function traffic(name, deps) {
     _.defaults(config.planefinder, defaults);
     // Find bounds.
     var dronePosition = {
-      latitude: 34.090303,
-      longitude: -118.276223
+      latitude: 37.786930,
+      longitude: -122.399614
     };
     config.planefinder.bounds = (
       config.planefinder.bounds ||
