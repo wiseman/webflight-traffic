@@ -1,6 +1,6 @@
 {
   "name": "webflight-traffic",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Plugin for webflight that shows nearby air traffic.",
   "main": "./index.js",
   "dependencies": {
@@ -10,12 +10,9 @@
     "sbs1": "~0.2.1",
     "underscore": "~1.4.4"
   },
-  "devDependencies": {
-  },
-  "scripts": {
-  },
-  "bin": {
-  },
+  "devDependencies": {},
+  "scripts": {},
+  "bin": {},
   "repository": {
     "type": "git",
     "url": "http://github.com/wiseman/webflight-traffic.git"
