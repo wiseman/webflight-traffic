@@ -21,19 +21,22 @@
     "url": "http://github.com/wiseman/webflight-traffic.git"
   },
   "keywords": [
+    "AR.Drone",
     "ads-b",
     "aircraft",
+    "ardrone-webflight",
     "aviation",
     "avionics",
-    "mode s",
-    "sbs-1",
-    "virtual radar",
-    "planespotting",
-    "planespotter",
+    "diydrone",
     "drone",
     "hud",
-    "AR.Drone",
-    "diydrone"
+    "mode s",
+    "planespotter",
+    "planespotting",
+    "plugin",
+    "sbs-1",
+    "virtual radar",
+    "webflight"
   ],
   "author": {
     "name": "John Wiseman",
