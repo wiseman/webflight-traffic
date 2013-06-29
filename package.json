@@ -25,10 +25,15 @@
     "aircraft",
     "aviation",
     "avionics",
-    "kinetic avionics",
     "mode s",
     "sbs-1",
-    "virtual radar"
+    "virtual radar",
+    "planespotting",
+    "planespotter",
+    "drone",
+    "hud",
+    "AR.Drone",
+    "diydrone"
   ],
   "author": {
     "name": "John Wiseman",
