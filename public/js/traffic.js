@@ -14,8 +14,8 @@
     // location--either GPS or geolocation based on wifi SSIDs.  Until
     // then, this is just an arbitrary default location.
     this.dronePosition = {
-      lat: 34.090303,
-      lon: -118.276223
+      lat: 37.786930,
+      lon: -122.399614
     };
     this.traffic = {};
 
