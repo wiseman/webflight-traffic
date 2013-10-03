@@ -1,14 +1,15 @@
 {
   "name": "webflight-traffic",
+  "description": "Plugin for AR.Drone webflight that shows nearby air traffic.",
+  "author": "John Wiseman <jjwiseman@gmail.com> (http://lemondronor.com)",
   "version": "0.0.3",
-  "description": "Plugin for webflight that shows nearby air traffic.",
   "main": "./index.js",
   "dependencies": {
-    "ar-drone": "git+ssh://git@github.com:felixge/node-ar-drone.git#master",
-    "geolib": "git://github.com/wiseman/Geolib.git#boundingbox",
-    "planefinder": "~0.0.1",
-    "sbs1": "~0.2.1",
-    "underscore": "~1.4.4"
+    "ar-drone": "~0.2.0",
+    "geolib": "~1.3.1",
+    "planefinder": "~0.0.3",
+    "sbs1": "~0.2.2",
+    "underscore": "~1.5.2"
   },
   "devDependencies": {},
   "scripts": {},
@@ -17,6 +18,7 @@
     "type": "git",
     "url": "http://github.com/wiseman/webflight-traffic.git"
   },
+  "bugs": "https://github.com/wiseman/webflight-traffic/issues",
   "keywords": [
     "AR.Drone",
     "ads-b",
@@ -35,11 +37,6 @@
     "virtual radar",
     "webflight"
   ],
-  "author": {
-    "name": "John Wiseman",
-    "email": "jjwiseman@gmail/com",
-    "url": "http://lemondronor.com"
-  },
   "license": "MIT/X11",
   "engine": {
     "node": ">=0.4"
