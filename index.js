@@ -1,7 +1,8 @@
+var defaults = require('lodash.defaults');
+var each = require('lodash.foreach');
 var geolib = require('geolib');
 var planefinder = require('planefinder');
 var sbs1 = require('sbs1');
-var _ = require('underscore');
 var arDroneConstants = require('ar-drone/lib/constants')
 
 
@@ -30,9 +31,8 @@ function traffic(name, deps) {
 
   var garbageCollect = function() {
     var nowMillis = new Date().getTime();
-    keys = _.keys(traffic);
-    _.each(keys, function(key) {
-      var age = nowMillis - traffic[key].timestamp;
+    each(traffic, function(value, key) {
+      var age = nowMillis - value.timestamp;
       if (age >= messageTimeout) {
         console.log('Expired old traffic ID ' + key);
         delete traffic[key];
@@ -48,7 +48,7 @@ function traffic(name, deps) {
     var id = msg.hex_ident;
     // Don't assume messages have any kind of timestamps; add our own.
     msg.timestamp = new Date().getTime();
-    traffic[id] = _.defaults(msg, traffic[id] || {});
+    traffic[id] = defaults(msg, traffic[id] || {});
   });
   sbs1Client.on('error', function(err) {
     console.error('Error communicating with SBS1 server at ' +
@@ -56,7 +56,7 @@ function traffic(name, deps) {
   });
 
   var handlePlanefinderData = function(planes) {
-    _.each(planes, function(plane) {
+    each(planes, function(plane) {
       traffic[plane.hex_ident] = plane;
     });
   };
@@ -67,11 +67,10 @@ function traffic(name, deps) {
     if (typeof(config.planefinder) !== 'object') {
       config.planefinder = {};
     }
-    defaults = {
+    defaults(config.planefinder, {
       faa: false,
       maxDistance: 30000
-    };
-    _.defaults(config.planefinder, defaults);
+    });
     // Find bounds.
     var dronePosition = {
       latitude: 37.786930,
