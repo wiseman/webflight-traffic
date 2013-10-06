@@ -2,7 +2,7 @@
   "name": "webflight-traffic",
   "description": "Plugin for AR.Drone webflight that shows nearby air traffic.",
   "author": "John Wiseman <jjwiseman@gmail.com> (http://lemondronor.com)",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "./index.js",
   "dependencies": {
     "ar-drone": "~0.2.0",
