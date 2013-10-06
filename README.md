@@ -4,7 +4,7 @@ This is a plugin for the browser-based AR.Drone ground control station
 [webflight](http://eschnou.github.io/ardrone-webflight/) that displays
 nearby aircraft overlaid on the drone's camera feed.
 
-![Screenshot](traffic-screenshot.jpg "Screenshot")
+![Screenshot](https://raw.github.com/wiseman/webflight-traffic/master/traffic-screenshot.jpg "Screenshot")
 
 For background, see ["Cheap ADS-B on amateur
 drones"](http://lemondronor.com/blog/indexphp/2013/4/cheap-ads-b-on-amateur-drones).
