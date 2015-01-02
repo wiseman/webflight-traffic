@@ -12,14 +12,14 @@ drones"](http://lemondronor.com/blog/indexphp/2013/4/cheap-ads-b-on-amateur-dron
 
 ## How it works
 
-To properly show air traffic onscreen we need to know 3 things:
+To properly show air traffic onscreen we need to know the answers to 3 things:
 
-1. The drone's location.
-2. The drone's attitude.
-3. The traffic's location.
+1. Where is the drone?
+2. What is the drone's attitude?
+3. Where is the traffic?
 
 
-### Where the drone is
+### Where is the drone?
 
 The AR.Drone doesn't come with GPS, so for now I fake it:
 
@@ -44,7 +44,7 @@ API](https://developers.google.com/maps/documentation/business/geolocation/#wifi
 
 3. Plug your own GPS into the drone's USB port.
 
-### The drone's attitude
+### What is the drone's attitude?
 
 The AR.Drone has gyros, accelerometers and a magnetometer which give
 us its heading, pitch and roll so we can figure out where on the video
@@ -67,7 +67,7 @@ function initDrone(client) {
 ```
 
 
-### Where the traffic is
+### Where is the traffic?
 
 This plugin can use two possible sources to get locations of nearby
 aircraft: an ADS-B receiver, or planefinder.net.  The recommended way
