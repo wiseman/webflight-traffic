@@ -14,9 +14,9 @@ drones"](http://lemondronor.com/blog/indexphp/2013/4/cheap-ads-b-on-amateur-dron
 
 To properly show air traffic onscreen we need to know 3 things:
 
-1. Where the drone is.
+1. The drone's location.
 2. The drone's attitude.
-3. Where the traffic is.
+3. The traffic's location.
 
 
 ### Where the drone is
